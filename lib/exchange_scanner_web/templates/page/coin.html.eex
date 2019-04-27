@@ -1,0 +1,23 @@
+    <div class="slim-mainpanel">
+      <div class="container">
+
+<div class="row row-sm mg-t-20">
+
+         <%= for coin <- @coins do %>
+                  <div class="col-lg-3">
+                    <a href="/coins/<%= coin.symbol %>" class="card-hover">
+                    <div class="card card-info mg-t-20">
+                      <div class="card-body pd-40">
+                        <div class="d-flex justify-content-center mg-b-30">
+                          <img src="<%= coin.logo %>" alt="">
+                        </div>
+                        <h3 class="tx-inverse"><%= coin.symbol %></h3>
+                        <h5 class="tx-inverse mg-b-20"><%= coin.name %></h5>
+                      </div>
+                    </div>
+                    </a>
+                  </div>
+         <% end %> 
+
+      </div><!-- container -->
+    </div><!-- slim-mainpanel -->
