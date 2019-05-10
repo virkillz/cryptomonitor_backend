@@ -1,0 +1,68 @@
+    <div class="slim-mainpanel">
+      <div class="container">
+
+
+<div class="row row-sm mg-t-20">
+          <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+            <div class="card card-table">
+              <div class="card-header">
+                <h6 class="slim-card-title">Price conversion</h6>
+              </div><!-- card-header -->
+              <div class="row mg-t-10 mg-20">
+            <%= for cur <- @currencies do %>  
+              <div class="col-lg-3">
+                <label class="rdiobox">
+                  <input name="rdio" type="radio" id="<%= cur %>" <%= if @default_currency == cur, do: "checked" %>>
+                  <span><%= cur %></span>
+                </label>
+              </div>   
+            <% end %>
+          </div>
+            </div>
+          </div>
+        </div> 
+
+
+<div class="row row-sm mg-t-20">
+          <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+            <div class="card card-table">
+              <div class="card-header">
+                <h6 class="slim-card-title">Exchanges</h6>
+              </div><!-- card-header -->
+              <div class="table-responsive">
+                <table class="table mg-b-0 tx-13">
+                  <thead>
+                    <tr class="tx-10">
+                      <th class="wd-10p pd-y-5">&nbsp;</th>
+                      <th class="pd-y-5">Name</th>
+                      <th class="pd-y-5">Visibility</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%= for exchange <- @exchanges do %>
+                      <tr>
+                        <td class="pd-l-20">
+                          <img src="<%= exchange.logo %>" class="wd-36 rounded-circle" alt="Image">
+                        </td>
+                        <td>
+                          <a href="" class="tx-inverse tx-14 tx-medium d-block"><%= exchange.name %></a>
+                          <span class="tx-11 d-block"><%= exchange.url %></span>
+                        </td>
+                        <td class="tx-12">
+                          <label class="switch float-left">
+                            <input type="checkbox" class="primary" <%= if exchange.visible, do: "checked" %>>
+                            <span class="slider round"></span>
+                          </label>
+                        </td>
+                      </tr>
+                    <% end %>
+                
+                  </tbody>
+                </table>
+              </div>
+            </div><!-- card -->
+          </div><!-- col-6 -->
+        </div>
+
+      </div><!-- container -->
+    </div><!-- slim-mainpanel -->

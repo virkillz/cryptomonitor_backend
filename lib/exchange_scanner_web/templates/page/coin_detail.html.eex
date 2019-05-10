@@ -3,17 +3,17 @@
 
         <div class="dash-headline-two mg-t-20">
           <div>
-            <h4 class="tx-inverse mg-b-5">Best Deal: 0%</h4>
-            <p class="mg-b-0">Buy from Huobi, Sell at Bitfinex</p>
+            <h4 class="tx-inverse mg-b-5">Best Deal: <%= Float.ceil(@info.gain, 2) %>%</h4>
+            <p class="mg-b-0">Buy from <%= String.capitalize(@info.lowest_ask.exchange) %>, Sell at <%= String.capitalize(@info.highest_bid.exchange) %></p>
           </div>
           <div class="d-h-t-right">
             <div class="summary-item">
-              <h1>USD 1,433</h1>
-              <span>BUY<br>from Huobi</span>
+              <h1>BTC <%= :erlang.float_to_binary(@info.max_bid, [{:decimals, 8}])  %></h1>
+              <span>BUY<br>from <%= String.capitalize(@info.lowest_ask.exchange) %></span>
             </div>
             <div class="summary-item">
-              <h1>USD 1,634</h1>
-              <span>SELL<br>to Bitfinex</span>
+              <h1>BTC <%= :erlang.float_to_binary(@info.min_ask, [{:decimals, 8}])  %></h1>
+              <span>SELL<br>to <%= String.capitalize(@info.highest_bid.exchange) %></span>
             </div>
           </div>
         </div>
@@ -22,31 +22,44 @@
           <div class="col-lg-12">
             <div class="card card-table">
               <div class="card-header">
-                <h6 class="slim-card-title">Incoming Signal</h6>
+                <h6 class="slim-card-title"><img style="max-height: 30px; margin-right: 30px;" src="<%= @coin_info.logo %>" alt="<%= @coin_info.name %>"> <%= @coin_info.name %> Market</h6>
               </div><!-- card-header -->
               <div class="table-responsive">
                 <table class="table mg-b-0 tx-13" id="arbitrage">
                   <thead>
                     <tr class="tx-10">
-                      <th class="wd-10p pd-y-5">Buy From</th>
-                      <th class="wd-10p pd-y-5">Sell To</th> 
-                      <th class="pd-y-5">Pair</th>                                           
-                      <th class="pd-y-5">Details</th>
-                      <th class="pd-y-5 tx-right">Buy Price</th>
-                      <th class="pd-y-5 tx-right">Sell Price</th>                      
-                      <th class="pd-y-5 tx-right">Profit</th>
-                      <th class="pd-y-5">Gain</th>                      
-                      <th class="pd-y-5 tx-center">Timestamp</th>
+                      <th></th>
+                      <th class="pd-y-5">Exchanges</th>
+                      <th class="pd-y-5">Bid</th> 
+                      <th class="pd-y-5">Ask</th>                                           
+                      <th class="pd-y-5">Volume</th>
                     </tr>
                   </thead>
                   <tbody>
+                      <%= for exchange <- @results do %>
+                      <tr>
+                        <td class="pd-l-20">
+                          <img src="<%= exchange.logo %>" class="wd-36 rounded-circle" alt="Image">
+                        </td>
+                        <td>
+                          <a href="" class="tx-inverse tx-14 tx-medium d-block"><%= String.capitalize(exchange.exchange) %></a>
+                          <span class="tx-11 d-block"><%= exchange.url %></span>
+                        </td>
+                        <td class="tx-12">
+                          <p><%= :erlang.float_to_binary(exchange.float_ask, [{:decimals, 8}])  %></p>
+                        </td>                        
+                        <td class="tx-12">
+                          <p><%= :erlang.float_to_binary(exchange.float_bid, [{:decimals, 8}])  %></p>
+                        </td>
+                        <td class="tx-12">
+                          <p>xx</p>
+                        </td>                        
+                      </tr>
 
+                      <% end %>
                   </tbody>
                 </table>
               </div><!-- table-responsive -->
-              <div class="card-footer tx-12 pd-y-15 bg-transparent">
-                <a href=""><i class="fa fa-angle-down mg-r-5"></i>View Previous Signal History</a>
-              </div><!-- card-footer -->
             </div><!-- card -->
           </div><!-- col-12 -->
         </div><!-- row -->

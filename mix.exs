@@ -40,6 +40,7 @@ defmodule ExchangeScanner.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:cachex, "~> 3.1"},
+      {:cors_plug, "~> 2.0"},
       {:monitrage, git: "https://github.com/virkillz/monitrage.git"}
     ]
   end

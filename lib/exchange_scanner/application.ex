@@ -11,7 +11,7 @@ defmodule ExchangeScanner.Application do
     # List all child processes to be supervised
     children = [
       # Start the endpoint when the application starts
-      ExchangeScannerWeb.Endpoint,
+      ExchangeScannerWeb.Endpoint
       # {Monitrage.Scanner, []},
       # ExchangeScanner.Subscriber,
       # worker(Cachex, [:my_cache, []])

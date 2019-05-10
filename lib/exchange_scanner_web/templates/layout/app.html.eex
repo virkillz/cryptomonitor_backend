@@ -14,7 +14,80 @@
     <link href="/lib/chartist/css/chartist.css" rel="stylesheet">
     <link href="/lib/rickshaw/css/rickshaw.min.css" rel="stylesheet">
     <style>
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 17px;
+  float:right;
+}
 
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 2px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input.default:checked + .slider {
+  background-color: #444;
+}
+input.primary:checked + .slider {
+  background-color: #2196F3;
+}
+input.success:checked + .slider {
+  background-color: #8bc34a;
+}
+input.info:checked + .slider {
+  background-color: #3de0f5;
+}
+input.warning:checked + .slider {
+  background-color: #FFC107;
+}
+input.danger:checked + .slider {
+  background-color: #f44336;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(13px);
+  -ms-transform: translateX(13px);
+  transform: translateX(13px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 17px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
     </style>
     <!-- Slim CSS -->
     <link rel="stylesheet" href="/css/slim.css">
@@ -31,64 +104,6 @@
             <button class="btn btn-primary"><i class="fa fa-search"></i></button>
           </div><!-- search-box -->
         </div><!-- slim-header-left -->
-        <div class="slim-header-right">
-          <div class="dropdown dropdown-a">
-            <a href="" class="header-notification" data-toggle="dropdown">
-              <i class="icon ion-ios-bolt-outline"></i>
-            </a>
-            <div class="dropdown-menu">
-              <div class="dropdown-menu-header">
-                <h6 class="dropdown-menu-title">Activity Logs</h6>
-                <div>
-                  <a href="">Filter List</a>
-                  <a href="">Settings</a>
-                </div>
-              </div><!-- dropdown-menu-header -->
-              <div class="dropdown-activity-list">
-                <div class="activity-label">Today, December 13, 2017</div>
-                <div class="activity-item">
-                  <div class="row no-gutters">
-                    <div class="col-2 tx-right">10:15am</div>
-                    <div class="col-2 tx-center"><span class="square-10 bg-success"></span></div>
-                    <div class="col-8">Purchased christmas sale cloud storage</div>
-                  </div><!-- row -->
-                </div><!-- activity-item -->
-                <div class="activity-item">
-                  <div class="row no-gutters">
-                    <div class="col-2 tx-right">9:48am</div>
-                    <div class="col-2 tx-center"><span class="square-10 bg-danger"></span></div>
-                    <div class="col-8">Login failure</div>
-                  </div><!-- row -->
-                </div><!-- activity-item -->
-                <div class="activity-item">
-                  <div class="row no-gutters">
-                    <div class="col-2 tx-right">7:29am</div>
-                    <div class="col-2 tx-center"><span class="square-10 bg-warning"></span></div>
-                    <div class="col-8">(D:) Storage almost full</div>
-                  </div><!-- row -->
-                </div><!-- activity-item -->
-                <div class="activity-item">
-                  <div class="row no-gutters">
-                    <div class="col-2 tx-right">3:21am</div>
-                    <div class="col-2 tx-center"><span class="square-10 bg-success"></span></div>
-                    <div class="col-8">1 item sold <strong>Christmas bundle</strong></div>
-                  </div><!-- row -->
-                </div><!-- activity-item -->
-                <div class="activity-label">Yesterday, December 12, 2017</div>
-                <div class="activity-item">
-                  <div class="row no-gutters">
-                    <div class="col-2 tx-right">6:57am</div>
-                    <div class="col-2 tx-center"><span class="square-10 bg-success"></span></div>
-                    <div class="col-8">Earn new badge <strong>Elite Author</strong></div>
-                  </div><!-- row -->
-                </div><!-- activity-item -->
-              </div><!-- dropdown-activity-list -->
-              <div class="dropdown-list-footer">
-                <a href="page-activity.html"><i class="fa fa-angle-down"></i> Show All Activities</a>
-              </div>
-            </div><!-- dropdown-menu-right -->
-          </div><!-- dropdown -->
-        </div><!-- header-right -->
       </div><!-- container -->
     </div><!-- slim-header -->
 
@@ -99,63 +114,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/">
               <i class="icon ion-ios-home-outline"></i>
-              <span>Dashboard</span>
+              <span>Home</span>
             </a>
           </li>          
-          <li class="nav-item with-sub">
-            <a class="nav-link" href="#">
-              <i class="icon ion-ios-book-outline"></i>
-              <span>Pages</span>
-            </a>
-            <div class="sub-item">
-              <ul>
-                <li><a href="page-profile.html">Profile Page</a></li>
-                <li><a href="page-invoice.html">Invoice</a></li>
-                <li><a href="page-contact.html">Contact Manager</a></li>
-                <li><a href="page-file-manager.html">File Manager</a></li>
-                <li><a href="page-calendar.html">Calendar</a></li>
-                <li><a href="page-timeline.html">Timeline</a></li>
-                <li class="sub-with-sub">
-                  <a href="#">Pricing</a>
-                  <ul>
-                    <li><a href="page-pricing.html">Pricing 01</a></li>
-                    <li><a href="page-pricing2.html">Pricing 02</a></li>
-                    <li><a href="page-pricing3.html">Pricing 03</a></li>
-                  </ul>
-                </li>
-                <li class="sub-with-sub">
-                  <a href="page-signin.html">Sign In</a>
-                  <ul>
-                    <li><a href="page-signin.html">Signin Simple</a></li>
-                    <li><a href="page-signin2.html">Signin Split</a></li>
-                  </ul>
-                </li>
-                <li class="sub-with-sub">
-                  <a href="page-signup.html">Sign Up</a>
-                  <ul>
-                    <li><a href="page-signup.html">Signup Simple</a></li>
-                    <li><a href="page-signup2.html">Signup Split</a></li>
-                  </ul>
-                </li>
-                <li class="sub-with-sub">
-                  <a href="#">Error Pages</a>
-                  <ul>
-                    <li><a href="page-404.html">404 Not Found</a></li>
-                    <li><a href="page-505.html">505 Forbidden</a></li>
-                    <li><a href="page-500.html">500 Internal Server</a></li>
-                    <li><a href="page-503.html">503 Service Unavailable</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div><!-- dropdown-menu -->
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="page-messages.html">
-              <i class="icon ion-ios-chatboxes-outline"></i>
-              <span>Signal</span>
-              <span class="square-8"></span>
-            </a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="/coins">
               <i class="icon ion-ios-analytics-outline"></i>
@@ -163,11 +124,17 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="widgets.html">
+            <a class="nav-link" href="/exchanges">
               <i class="icon ion-ios-analytics-outline"></i>
               <span>Exchanges</span>
             </a>
-          </li>          
+          </li>  
+          <li class="nav-item">
+            <a class="nav-link" href="/setting">
+              <i class="icon ion-ios-gear-outline"></i>
+              <span>Settings</span>
+            </a>
+          </li>                    
         </ul>
       </div><!-- container -->
     </div>
